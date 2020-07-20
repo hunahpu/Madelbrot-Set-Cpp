@@ -2,18 +2,24 @@
 #include <SDL2/SDL.h>
 #include<iostream>
 #include<string>
-#include<complex>
-#include<thread>
 #include<chrono>
 #include "fractal.h"
+#include "renderer.h"
 using namespace std;
 void logSDLError(std::ostream &os, const std::string &msg){
 	os << msg << " error: " << SDL_GetError() << std::endl;
 }
-int maxIter =64;
-int main() {
 
-    if (SDL_Init(SDL_INIT_VIDEO) < 0) {
+
+const int windowHeight = 600;
+const int windowWidth = 800;
+
+int main() {
+	Renderer render(windowHeight,windowWidth);
+	Fractal mandelbrot(windowWidth,windowHeight);
+	render.loop(mandelbrot);
+
+    /*if (SDL_Init(SDL_INIT_VIDEO) < 0) {
         return 1;
         logSDLError(std::cout, "SDL INIT");
     }
@@ -34,17 +40,11 @@ int main() {
 
     bool quit = false;
     SDL_Event event;
-	//pfractal = (int*)malloc(sizeof(int)*windowHeight*windowWidth);
 	Uint32 fps_lasttime = SDL_GetTicks(); //the last recorded time.
 	Uint32 fps_current; //the current FPS.
 	Uint32 fps_frames = 0;
-	//std::complex<float> c;
-	//std::complex<float> z;
 	Fractal mandelbrot(windowWidth,windowHeight);
     while (!quit) {
-        //drawing particles
-        //setting up objects
-        //repeated over and over again
 
         while (SDL_PollEvent(&event)) {
             if (event.type == SDL_QUIT) {
@@ -87,11 +87,9 @@ int main() {
         SDL_RenderClear(s);
         // Set our color for the draw functions
         SDL_SetRenderDrawColor(s, 0xFF, 0xFF, 0xFF, 0xFF);
- 		mandelbrot.render(s);
-        // Set the color to what was before
+
+		mandelbrot.render(s);
         SDL_SetRenderDrawColor(s, 0x00, 0x00, 0x00, 0xFF);
-        // .. you could do some other drawing here
-        // And now we present everything we draw after the clear.
 		fps_frames++;
 		if (fps_lasttime < SDL_GetTicks() - 1000)
 		{
@@ -103,10 +101,8 @@ int main() {
 
         SDL_RenderPresent(s);
     }
-	//free(pfractal);
     SDL_DestroyWindow(window);
-    // We have to destroy the renderer, same as with the window.
     SDL_DestroyRenderer(s);
     SDL_Quit();
-
+*/
 }

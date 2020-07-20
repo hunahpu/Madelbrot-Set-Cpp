@@ -5,5 +5,5 @@ project(Mandelbrot)
 find_package(SDL2 REQUIRED)
 include_directories(${SDL2_INCLUDE_DIRS})
 
-add_executable(Mandelbrot src/main.cpp src/fractal.cpp)
+add_executable(Mandelbrot src/main.cpp src/fractal.cpp src/renderer.cpp)
 target_link_libraries(Mandelbrot ${SDL2_LIBRARIES} pthread)

@@ -28,7 +28,7 @@ class Fractal{
     void computeFractal(point pixtl, point pixbr, point fractl, point fracbr,int iterations);
     void computeFractalOpti(point pixtl, point pixbr, point fractl, point fracbr,int iterations);
     void threadFractal(point pixtl, point pixbr, point fractl, point fracbr, int nThreads);
-
+    void threadFractal(int nThreads);
 };
 
 

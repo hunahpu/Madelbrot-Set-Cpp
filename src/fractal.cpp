@@ -65,16 +65,34 @@ void Fractal::threadFractal(point pixtl, point pixbr, point fractl, point fracbr
 			point{pixtl.x + nSectionWidth * (i + 1), pixbr.y},
 			point{fractl.x + dFractalWidth * float(i), fractl.y},
 			point{fractl.x + dFractalWidth * float(i + 1), fracbr.y},
-			_maxIter);
-		//t[i] = std::thread(computeFractal,
-		//point{pixtl.x + nSectionWidth * (i), pixtl.y},
-		//point{pixtl.x + nSectionWidth * (i), pixtl.y},
-		//point{pixtl.x + nSectionWidth * (i), pixtl.y},
-		//point{pixtl.x + nSectionWidth * (i), pixtl.y}, 64); 
+			_maxIter);; 
 
 	for (size_t i = 0; i < nThreads; i++)
 		t[i].join();
 }
+
+void Fractal::threadFractal(int nThreads){
+    point pixtl{0,0};
+    point pixbr{float(_width),float(_height)};
+
+	int nSectionWidth = (pixbr.x - pixtl.x) / nThreads;
+	float dFractalWidth = (_fracbr.x - _fractl.x) / float(nThreads);
+
+	std::thread t[nThreads];
+
+
+	for (int i = 0; i < nThreads; i++)
+		t[i] = std::thread(&Fractal::computeFractalOpti, this,
+			point{pixtl.x + nSectionWidth * (i), pixtl.y},
+			point{pixtl.x + nSectionWidth * (i + 1), pixbr.y},
+			point{_fractl.x + dFractalWidth * float(i), _fractl.y},
+			point{_fractl.x + dFractalWidth * float(i + 1), _fracbr.y},
+			_maxIter);; 
+
+	for (size_t i = 0; i < nThreads; i++)
+		t[i].join();
+}
+
 
 void Fractal::render(SDL_Renderer *render){
     for(int x = 0; x < _width; x++){

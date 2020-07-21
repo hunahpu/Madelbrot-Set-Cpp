@@ -32,6 +32,7 @@ In this project, you can build your own C++ application starting with this repo,
 - Use **arrow eys** to explore the mandelbrot set
 - Use **z/x keys** to increment/decrement number of iterations
 - Use **c/v keys** to zoom in/zoom out
+- Use **esc key** to close
 # References 
 
 - [Mandelbrot Set](https://en.wikipedia.org/wiki/)

@@ -9,9 +9,9 @@ The code base can be divided architecturally and functionally into two distinct 
 
 
 
-Once the explorer starts the user can explore the mandelbrot fractal for instructions check the [controls section ](# Controls), an example is shown below
+Once the explorer starts the user can explore the mandelbrot fractal for instructions check the [controls section ](#Controls), an example is shown below
 
-![Example](/home/mintaka/Desktop/sandbox/cpp/sdl/mandelbrot/mandelbrot.gif)
+![Example](mandelbrot.gif)
 
 ## Dependencies for Running Locally
 
